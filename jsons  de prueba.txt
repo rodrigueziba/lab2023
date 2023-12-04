@@ -1,0 +1,119 @@
+--Areas de desempeño
+{
+  "nombre": "Área de Desempeño 1",
+  "area_padre_id": null,
+  "perfil_id": 1,
+  "creado_por": 1
+}
+
+Ejemplo de JSON para el modelo categoria_locaciones:
+
+
+{
+  "nombre": "Categoría de Locación 1",
+  "categoria_padre_id": null,
+  "locacion_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo imagenes_locaciones:
+
+{
+  "nombre": "Imagen Locación 1",
+  "descripcion": "Descripción de la imagen 1",
+  "link": "/ruta/imagen1",
+  "locacion_id": 1,
+  "creado_por": 1
+}
+
+
+Ejemplo de JSON para el modelo imagenes_prestadores:
+
+{
+  "nombre": "Imagen Prestador 1",
+  "descripcion": "Descripción de la imagen del prestador 1",
+  "link": "/ruta/imagenprestador1",
+  "perfil_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo locaciones:
+
+{
+  "nombre": "Locación 1",
+  "descripcion": "Descripción de la locación 1",
+  "ciudad": "Ushuaia",
+  "jurisdiccion": "estatal",
+  "direccion": "Dirección 1",
+  "instagram": "instagram1",
+  "facebook": "facebook1",
+  "sitio_web": "sitio_web1",
+  "telefono": 123456789,
+  "email": "email1@example.com",
+  "imagen_perfil": 1,
+  "direccion_latitud": -54.8000,
+  "direccion_longitud": -68.3000,
+  "categoria_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo perfil:
+
+{
+  "perfil": "Profesional",
+  "descripcion": "Descripción del perfil 1",
+  "user_id": 1,
+  "nombre_entidad": "Entidad 1",
+  "imagen_perfil": 1,
+  "experiencia_laboral": "Experiencia laboral 1",
+  "area_cobertura": "Ushuaia",
+  "email": "email1@example.com",
+  "telefono": 111222333,
+  "instagram": "instagram1",
+  "facebook": "facebook1",
+  "sitio_web": "sitio_web1",
+  "tipo_productora_id": 1,
+  "areas_desempenio_id": 1,
+  "tipo_servicio_id": 1,
+  "tipo_actividad_id": 1,
+  "idioma": "Ingles"
+}
+Ejemplo de JSON para el modelo permisos:
+
+
+{
+  "nombre": "Permiso 1",
+  "descripcion": "Descripción del permiso 1",
+  "link": "/ruta/permiso1",
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo tipo_actividad:
+
+{
+  "nombre": "Tipo de Actividad 1",
+  "tipo_padre_id": null,
+  "perfil_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo tipo_productora:
+
+{
+  "nombre": "Tipo de Productora 1",
+  "tipo_padre_id": null,
+  "perfil_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo tipo_servicio:
+
+{
+  "nombre": "Tipo de Servicio 1",
+  "tipo_padre_id": null,
+  "perfil_id": 1,
+  "creado_por": 1
+}
+Ejemplo de JSON para el modelo users:
+
+{
+  "nombre": "Usuario1",
+  "apellido": "Apellido1",
+  "email": "usuario1@example.com",
+  "password": "contrasena1",
+  "rol": "Administrador"
+}

@@ -1,0 +1,243 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model areas_desempenio {
+  id            Int       @id @default(autoincrement())
+  nombre        String    @unique(map: "nombre") @db.VarChar(180)
+  area_padre_id Int?
+  perfil_id     Int?
+  creado_por    Int?
+  created_at    DateTime? @db.Timestamp(0)
+  update_at     DateTime? @db.Timestamp(0)
+
+  @@index([area_padre_id], map: "area_padre_id")
+  @@index([creado_por], map: "creado_por")
+  @@index([perfil_id], map: "perfil_id")
+}
+
+model categoria_locaciones {
+  id                 Int       @id @default(autoincrement())
+  nombre             String    @unique(map: "nombre") @db.VarChar(180)
+  categoria_padre_id Int?
+  locacion_id        Int?
+  creado_por         Int?
+  created_at         DateTime? @db.Timestamp(0)
+  update_at          DateTime? @db.Timestamp(0)
+
+  @@index([categoria_padre_id], map: "categoria_padre_id")
+  @@index([creado_por], map: "creado_por")
+  @@index([locacion_id], map: "locacion_id")
+}
+
+model imagenes_locaciones {
+  id          Int       @id @default(autoincrement())
+  nombre      String?   @db.VarChar(255)
+  descripcion String?   @db.VarChar(255)
+  link        String?   @db.VarChar(255)
+  locacion_id Int?
+  creado_por  Int?
+  created_at  DateTime? @db.Timestamp(0)
+  update_at   DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+  @@index([locacion_id], map: "locacion_id")
+}
+
+model imagenes_prestadores {
+  id          Int       @id @default(autoincrement())
+  nombre      String?   @db.VarChar(255)
+  descripcion String?   @db.VarChar(255)
+  link        String?   @db.VarChar(255)
+  perfil_id   Int?
+  creado_por  Int?
+  created_at  DateTime? @db.Timestamp(0)
+  update_at   DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+  @@index([perfil_id], map: "perfil_id")
+}
+
+model locaciones {
+  id                 Int                      @id @default(autoincrement())
+  nombre             String                   @unique(map: "nombre") @db.VarChar(180)
+  descripcion        String?                  @db.Text
+  ciudad             locaciones_ciudad?
+  jurisdiccion       locaciones_jurisdiccion?
+  direccion          String?                  @db.VarChar(255)
+  instagram          String?                  @db.VarChar(255)
+  facebook           String?                  @db.VarChar(255)
+  sitio_web          String?                  @db.VarChar(255)
+  telefono           Int?
+  email              String?                  @db.VarChar(255)
+  imagen_perfil      Int?
+  direccion_latitud  Float?
+  direccion_longitud Float?
+  categoria_id       Int?
+  creado_por         Int?
+  created_at         DateTime?                @db.Timestamp(0)
+  update_at          DateTime?                @db.Timestamp(0)
+
+  @@index([categoria_id], map: "categoria_id")
+  @@index([creado_por], map: "creado_por")
+  @@index([imagen_perfil], map: "imagen_perfil")
+}
+
+model perfil {
+  id                  Int                    @id @default(autoincrement())
+  perfil              perfil_perfil?
+  descripcion         String?                @db.Text
+  user_id             Int?
+  nombre_entidad      String                 @unique(map: "nombre_entidad") @db.VarChar(180)
+  imagen_perfil       Int?
+  experiencia_laboral String?                @db.Text
+  area_cobertura      perfil_area_cobertura?
+  email               String?                @db.VarChar(255)
+  telefono            Int?
+  instagram           String?                @db.VarChar(255)
+  facebook            String?                @db.VarChar(255)
+  sitio_web           String?                @db.VarChar(255)
+  tipo_productora_id  Int?
+  areas_desempenio_id Int?
+  tipo_servicio_id    Int?
+  tipo_actividad_id   Int?
+  idioma              perfil_idioma?
+  created_at          DateTime?              @db.Timestamp(0)
+  update_at           DateTime?              @db.Timestamp(0)
+
+  @@index([areas_desempenio_id], map: "areas_desempenio_id")
+  @@index([imagen_perfil], map: "imagenes_prestadores")
+  @@index([tipo_actividad_id], map: "tipo_actividad_id")
+  @@index([tipo_productora_id], map: "tipo_productora_id")
+  @@index([tipo_servicio_id], map: "tipo_servicio_id")
+  @@index([user_id], map: "user_id")
+}
+
+model permisos {
+  id          Int       @id @default(autoincrement())
+  nombre      String    @unique(map: "nombre") @db.VarChar(180)
+  descripcion String?   @db.VarChar(255)
+  link        String?   @db.VarChar(255)
+  creado_por  Int?
+  created_at  DateTime? @db.Timestamp(0)
+  update_at   DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+}
+
+model tipo_actividad {
+  id            Int       @id @default(autoincrement())
+  nombre        String    @unique(map: "nombre") @db.VarChar(180)
+  tipo_padre_id Int?
+  perfil_id     Int?
+  creado_por    Int?
+  created_at    DateTime? @db.Timestamp(0)
+  update_at     DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+  @@index([perfil_id], map: "perfil_id")
+  @@index([tipo_padre_id], map: "tipo_padre_id")
+}
+
+model tipo_productora {
+  id            Int       @id @default(autoincrement())
+  nombre        String    @unique(map: "nombre") @db.VarChar(180)
+  tipo_padre_id Int?
+  perfil_id     Int?
+  creado_por    Int?
+  created_at    DateTime? @db.Timestamp(0)
+  update_at     DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+  @@index([perfil_id], map: "perfil_id")
+  @@index([tipo_padre_id], map: "tipo_padre_id")
+}
+
+model tipo_servicio {
+  id            Int       @id @default(autoincrement())
+  nombre        String    @unique(map: "nombre") @db.VarChar(180)
+  tipo_padre_id Int?
+  perfil_id     Int?
+  creado_por    Int?
+  created_at    DateTime? @db.Timestamp(0)
+  update_at     DateTime? @db.Timestamp(0)
+
+  @@index([creado_por], map: "creado_por")
+  @@index([perfil_id], map: "perfil_id")
+  @@index([tipo_padre_id], map: "tipo_padre_id")
+}
+
+model user {
+  id         Int      @id @default(autoincrement())
+  nombre     String   @db.VarChar(255)
+  apellido   String   @db.VarChar(255)
+  email      String   @unique(map: "IDX_e12875dfb3b1d92d7d7c5377e2") @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  rol        user_rol
+  created_at DateTime @default(now()) @db.DateTime(6)
+  update_at  DateTime @default(now()) @db.DateTime(6)
+}
+
+model users {
+  id         Int        @id @default(autoincrement())
+  nombre     String?    @db.VarChar(255)
+  apellido   String?    @db.VarChar(255)
+  email      String     @unique(map: "email")
+  password   String?    @db.VarChar(255)
+  rol        users_rol?
+  created_at DateTime?  @db.Timestamp(0)
+  update_at  DateTime?  @db.Timestamp(0)
+}
+
+enum perfil_perfil {
+  Profesional
+  Productora_Audiovisual         @map("Productora Audiovisual")
+  Comercio_o_Empresa_Audiovisual @map("Comercio o Empresa Audiovisual")
+  Comercio_o_empresa_af_n        @map("Comercio o empresa afín")
+}
+
+enum locaciones_ciudad {
+  Ushuaia
+  Tolhuin
+  Rio_Grande @map("Rio Grande")
+}
+
+enum locaciones_jurisdiccion {
+  estatal
+  privado
+}
+
+enum user_rol {
+  Administrador
+  Prestador
+  Contratante
+  Prestador_Secundario @map("Prestador Secundario")
+}
+
+enum users_rol {
+  Administrador
+  Prestador
+  Contratante
+  Prestador_Secundario @map("Prestador Secundario")
+}
+
+enum perfil_area_cobertura {
+  Ushuaia
+  Tolhuin
+  Rio_Grande @map("Rio Grande")
+}
+
+enum perfil_idioma {
+  Ingles            
+  Senias 
+  Portugues         
+  Aleman            
+  Frances           
+  Chino
+  Japones           
+}
